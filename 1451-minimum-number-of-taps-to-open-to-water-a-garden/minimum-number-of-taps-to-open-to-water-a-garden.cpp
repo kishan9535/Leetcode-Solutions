@@ -5,7 +5,7 @@ public:
         
         for(int i = 0; i<ranges.size(); i++) {
             
-         int start = max(0, i - ranges[i]);
+          int start = max(0, i - ranges[i]);
             int end   = min(n, i + ranges[i]);
             
             startEnd[start] = max(startEnd[start], end);
