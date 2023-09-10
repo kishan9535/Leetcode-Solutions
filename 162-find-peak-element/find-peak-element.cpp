@@ -1,15 +1,19 @@
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
-        int ans;
         int n=nums.size();
-       
-        for(int i =0;i<n;i++){
-            if(( i==0||nums[i]>nums[i-1]) && (i==n-1||nums[i]>nums[i+1])){
-                ans =i;
-                break;
+        if(n==1)return 0;
+        int low=0;
+        int high=n-1;
+        while(low<high){
+            int m=low+(high-low)/2;
+            if(nums[m]>nums[m+1]){
+                high=m;
+            }
+            else{
+                low=m+1;
             }
         }
-        return ans;
+        return low; 
     }
 };
