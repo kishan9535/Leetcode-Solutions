@@ -1,34 +1,28 @@
 class Solution {
 public:
-     bool isVowel(char ch) {
-        ch = tolower(ch);
-        return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+    bool isVowel(char c){
+        char a=tolower(c);
+        if(a=='a'||a=='e'||a=='i'||a=='o'||a=='u') return true;
+        return false;
     }
     string sortVowels(string s) {
-         string vowels, consonants;
-        for (char ch : s) {
-            if (isVowel(ch)) {
-                vowels += ch;
-            } else {
-                consonants += ch;
-            }
+    string temp="AEIOUaeiou";
+    int j=0;
+    unordered_map<char,int>mp;
+    for(auto i:s){
+        if(isVowel(i)){
+        mp[i]++;
         }
-        
-        // Sort the vowels in non-decreasing order based on their ASCII values
-        sort(vowels.begin(), vowels.end());
-        
-        // Create the resulting string by replacing vowels with sorted vowels
-        string result = "";
-        int vowelIdx = 0;
-        for (char ch : s) {
-            if (isVowel(ch)) {
-                result += vowels[vowelIdx++];
-            } else {
-                result += ch;
-            }
+    }
+    for(int i=0;i<s.length();i++){
+        if(isVowel(s[i])){
+           while(mp[temp[j]]==0){
+            j++;
+           }
+           s[i]=temp[j];
+           mp[temp[j]]--;
         }
-        
-        return result;
-        
+    }
+   return s;
     }
 };
