@@ -1,16 +1,17 @@
 class Solution {
 public:
     int maxLengthBetweenEqualCharacters(string s) {
-      unordered_map<char,int>mp;
+      vector<int>a(26,-1);
       int n=s.length(),ans=-1;
       for(int i=0;i<n;i++){
-          if(mp.find(s[i])==mp.end()){
-              mp[s[i]]=i;
+          int ch=s[i]-'a';
+          if(a[ch]==-1){
+              a[ch]=i;
           }
-          else if(mp.find(s[i])!=mp.end()){
-              ans=max(ans,(i-mp[s[i]]-1));
+          else if(a[ch]!=-1){
+              ans=max(ans,(i-a[ch]-1));
           }
       }
-      return ans;  
+      return ans; 
     }
 };
