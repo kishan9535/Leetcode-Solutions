@@ -4,6 +4,7 @@ int t[1001][1001];
     bool isPalindrome(string &s,int i,int j){
         if(i>j)return true;
         if(t[i][j]!=-1)return t[i][j];
+        
         if(s[i]==s[j]){
             return isPalindrome(s,i+1,j-1);
         }
