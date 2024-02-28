@@ -11,21 +11,23 @@
  */
 class Solution {
 public:
-   int ans=0;
-   int rootn0=-1;
-    void dfs(TreeNode* root, int num){
-        if(!root)return;
-       
-       if(num>rootn0){
-           rootn0=num;
-           ans=root->val;
-       }
-       dfs(root->left,num+1);
-       dfs(root->right,num+1);
-    }
     int findBottomLeftValue(TreeNode* root) {
-        if(!root) return -1;
-        dfs(root,0);
-        return ans;
+     queue<TreeNode*>que;
+     int ans=-1;
+     que.push(root);
+     while(!que.empty()){
+         TreeNode* nod=que.front();
+         que.pop();
+         ans=nod->val;
+         if(nod->right){
+             que.push(nod->right);
+             
+         }
+         if(nod->left){
+             que.push(nod->left);
+             
+         }
+     }
+     return ans;   
     }
 };
