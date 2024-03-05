@@ -34,13 +34,26 @@ int n,m;
     int earliestSecondToMarkIndices(vector<int>& nums, vector<int>& changeIndices) {
         n=nums.size();
         m=changeIndices.size();
-
+/*
         for(int i=0;i<m;i++){
             if(allIndicesMarked(i,changeIndices,nums)){
                 return i+1;
             }
+        }*/
+        int ans=-1;
+        int left_time=0;
+        int right_time=m-1;
+        while(left_time<=right_time){
+            int mid_time=left_time+(right_time-left_time)/2;
+            if(allIndicesMarked(mid_time,changeIndices,nums)){
+                ans=mid_time+1;
+                right_time=mid_time-1;
+            }
+            else{
+                left_time=mid_time+1;
+            }
         }
 
-        return -1;
+        return  ans;
     }
 };
