@@ -2,21 +2,17 @@ class Solution {
 public:
     long long zeroFilledSubarray(vector<int>& nums) {
       int n=nums.size();
-      int i=0;
+       int continous_cnt=0;
       long long ans=0;
-      while(i<n){
-       long long l=0;
-       if(nums[i]==0){
-        while(i<n && nums[i]==0 ){
-            i++;
-            l++;
+      
+      for(int i=0;i<n;i++){
+        if(nums[i]==0){
+            continous_cnt++;
         }
-       }
-       else{
-        i++;
-       }
-       ans+=(l)*(l+1)/2;
-        
+        else{
+            continous_cnt=0;
+        }
+        ans=ans+continous_cnt;
       }
       return ans;  
     }
