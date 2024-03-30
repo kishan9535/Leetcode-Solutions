@@ -1,0 +1,1 @@
+<h2>apply-operations-to-make-sum-of-array-greater-than-or-equal-to-k Notes</h2><hr>[ Time taken: 34 m 20 s ]
