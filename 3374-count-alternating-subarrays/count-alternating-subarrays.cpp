@@ -1,8 +1,5 @@
 class Solution {
 public:
-    long long solve(int n) {
-        return n * (n + 1) / 2;
-    }
 
     long long countAlternatingSubarrays(vector<int>& nums) {
         int n = nums.size();
