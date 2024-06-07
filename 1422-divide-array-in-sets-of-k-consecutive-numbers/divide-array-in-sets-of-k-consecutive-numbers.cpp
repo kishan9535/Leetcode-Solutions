@@ -7,19 +7,16 @@ public:
        for(int i=0;i<n;i++){
         mp[nums[i]]++;
        }
-       for(auto it=mp.begin();it!=mp.end();){
-            if(it->second>0){
-                for(int i=0;i<k;i++){
-                    if(mp[it->first+i]>0){
-                        mp[it->first+i]--;
-                    }
-                    else{
-                        return false;
-                    }
+       while(!mp.empty()){
+            int minElement = mp.begin()->first;
+            for(int i=0;i<k;i++){
+                if(mp.find(minElement+i) == mp.end()){
+                    return false;
                 }
-            }
-            else{
-            it++;
+                mp[minElement+i]--;
+                if(mp[minElement+i] == 0){
+                    mp.erase(minElement+i);
+                }
             }
         }
        return true;     
