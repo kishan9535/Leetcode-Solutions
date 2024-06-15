@@ -3,9 +3,9 @@ public:
     int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital) {
       
       int n=profits.size();
-      vector<pair<int,int>>ans(n);
+      vector<pair<int,int>>ans;
       for(int i=0;i<n;i++){
-        ans[i]={capital[i],profits[i]};
+        ans.push_back({capital[i],profits[i]});
       }
       sort(ans.begin(),ans.end());
 
