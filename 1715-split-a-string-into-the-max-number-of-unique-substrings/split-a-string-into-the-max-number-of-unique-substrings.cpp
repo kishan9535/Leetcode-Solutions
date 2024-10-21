@@ -2,7 +2,7 @@ class Solution {
 public:
      int n;
     int max_cnt=0;
-    void solve(string s,int i,int cnt,set<string>&st){
+    void solve(string s,int i,int cnt,set<string>st){
         if(i>=n && cnt==st.size()){
             max_cnt=max(max_cnt,cnt);
             return;
