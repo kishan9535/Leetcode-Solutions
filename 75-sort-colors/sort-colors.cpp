@@ -2,11 +2,7 @@ class Solution {
 public:
     void sortColors(vector<int>& nums) {
       vector<int>cnt(3,0);
-    //   for(int i=0;i<nums.size();i++){
-    //      if(nums[i]==0)cnt[0]++;
-    //      else if(nums[i]==2)cnt[1]++;
-    //      else cnt[2]++;
-    //   }
+
       for(auto it: nums){
         if(it==0)cnt[0]++;
         if(it==1)cnt[1]++;
