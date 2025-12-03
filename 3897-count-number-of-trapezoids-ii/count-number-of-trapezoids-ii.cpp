@@ -3,7 +3,7 @@ public:
     int countTrapezoids(vector<vector<int>>& points) {
         int n = points.size();
 
-        //slope -> {intercepts}
+        
         unordered_map<float, vector<float>> slopeIntercpts;
 
         unordered_map<int, vector<float>> midPointMap;
@@ -22,8 +22,8 @@ public:
                 int dy = y2-y1;
 
                 float slope, intercept;
-                if(x2 == x1) { //dx == 0
-                    slope     = 1e9+7; //10000007
+                if(x2 == x1) { 
+                    slope     = 1e9+7;
                     intercept = x1;
                 } else {
                     slope = (float)(y2-y1)/(x2-x1);
