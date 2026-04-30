@@ -1,58 +1,40 @@
 class Solution {
 public:
+    int n,m;
+
+
+   int solve(int i,int j,int cost,vector<vector<int>>&grid,int k,vector<vector<vector<int>>>&t){
+
+        if(i>=m || j>=n) return INT_MIN;
+
+        int new_cost=cost+(grid[i][j]>0);
+
+        if(new_cost>k)return INT_MIN;
+
+
+        if(i==m-1 && j==n-1)return grid[i][j];
+
+        if(t[i][j][cost]!=-1)return t[i][j][cost];
+
+        int down=solve(i+1,j,new_cost,grid,k,t);
+        int right=solve(i,j+1,new_cost,grid,k,t);
+
+        int maxi=max(down,right);
+
+        if(maxi==INT_MIN)return t[i][j][cost]= INT_MIN;
+
+        return t[i][j][cost]= maxi+grid[i][j];
+
+    }
+
     int maxPathScore(vector<vector<int>>& grid, int k) {
-        int m = grid.size();
-        int n = grid[0].size();
+        n=grid[0].size();
+        m=grid.size();
 
-        vector<vector<vector<int>>> dp(
-            m, vector<vector<int>>(n, vector<int>(k + 1, -1))
-        );
+            vector<vector<vector<int>>>t(m+1,vector<vector<int>>(n+1,vector<int>(k+1,-1)));
+      
+       int ans=solve(0,0,0,grid,k,t);
 
-        dp[0][0][0] = 0;
-
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-
-                for (int c = 0; c <= k; c++) {
-
-                    if (dp[i][j][c] == -1) continue;
-
-                    // move down
-                    if (i + 1 < m) {
-                        int val = grid[i+1][j];
-                        int cost = (val == 0 ? 0 : 1);
-
-                        int nc = c + cost;
-                        if (nc <= k) {
-                            dp[i+1][j][nc] = max(
-                                dp[i+1][j][nc],
-                                dp[i][j][c] + val
-                            );
-                        }
-                    }
-
-                    // move right
-                    if (j + 1 < n) {
-                        int val = grid[i][j+1];
-                        int cost = (val == 0 ? 0 : 1);
-
-                        int nc = c + cost;
-                        if (nc <= k) {
-                            dp[i][j+1][nc] = max(
-                                dp[i][j+1][nc],
-                                dp[i][j][c] + val
-                            );
-                        }
-                    }
-                }
-            }
-        }
-
-        int ans = -1;
-        for (int c = 0; c <= k; c++) {
-            ans = max(ans, dp[m-1][n-1][c]);
-        }
-
-        return ans;
+       return ans==INT_MIN?-1:ans;
     }
 };
