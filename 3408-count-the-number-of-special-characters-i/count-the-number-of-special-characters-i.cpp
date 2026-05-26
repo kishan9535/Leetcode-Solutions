@@ -1,19 +1,26 @@
 class Solution {
 public:
+   
     int numberOfSpecialChars(string word) {
-       unordered_set<char>upper;
-       unordered_set<char>lower;
-        
-        for(auto i:word){
-            if(islower(i))lower.insert(i);
-            else upper.insert(i);
+      
+      int ans=0;
+      vector<int>up(26,0);
+      vector<int>lo(26,0);
+      int n=word.length();
+
+      for(int i=0;i<n;i++){
+        if(word[i]==tolower(word[i])){
+            lo[word[i]-'a']++;
         }
-        int ans=0;
-        for(auto i: lower){
-            if(upper.find(toupper(i))!=upper.end()){
-                ans++;
-            }
+        else{
+            up[word[i]-'A']++;
         }
-        return ans;
+      }
+      for(int i=0;i<26;i++){
+        if(up[i]>0 && lo[i]>0){
+            ans++;
+        }
+      }
+      return ans;
     }
 };
