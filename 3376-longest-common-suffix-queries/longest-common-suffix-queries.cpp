@@ -22,7 +22,7 @@ public:
     return tmp;
   }
 
-  void insertTrie(trieNode* p ,int i, vector<string>&words){
+ void insertTrie(trieNode* p,int i,vector<string>&words){
     string word=words[i];
     int n=word.size();
 
@@ -74,7 +74,7 @@ public:
         for(int i=0;i<n;i++){
             ans[i]=search(root,wordsQuery[i]);
         }
-        delete root;
+        delete(root);
 
         return ans;
         
