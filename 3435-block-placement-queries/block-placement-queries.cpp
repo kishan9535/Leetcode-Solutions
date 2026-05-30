@@ -26,7 +26,7 @@ public:
     segmentTree[i]=max(segmentTree[2*i+1],segmentTree[2*i+2]);
   }
 
-  int querysegTree(int s,int e,int i,int l,int r){
+int querysegTree(int s, int e,int i,int l, int r){
     if(l>e || r<s){
         return 0;
     }
@@ -54,12 +54,13 @@ public:
                 int x=it[1];
 
                 auto p=st.upper_bound(x);
-                int nxt=(p!=st.end())?*p:-1;
+                int nxt=(p!=st.end())?*p:-1;    
                 int pre=*prev(p);
 
                 updateSegTree(x,x-pre,0,0,n-1);
                 if(nxt!=-1)updateSegTree(nxt,nxt-x,0,0,n-1);
-                st.insert(x);
+                
+                    st.insert(x);
             }
             else{
                 int x=it[1];
@@ -72,10 +73,10 @@ public:
                 int best=max(maxgap,x-pre);
 
                 ans.push_back(best>=sz);
+              
             }
         }
-
-        return ans;
-          
+          return ans;
+        
     }
 };
