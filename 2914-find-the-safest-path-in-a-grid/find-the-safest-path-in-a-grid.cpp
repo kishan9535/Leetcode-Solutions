@@ -79,7 +79,7 @@ public:
         }
 
         int l = 0;
-        int r = n * 2; // Adjust range based on potential maximum safeness factor
+        int r = n * 2;
         int ans = 0;
         while (l <= r) {
             int mid = l + (r - l) / 2;
